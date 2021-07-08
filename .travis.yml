@@ -14,6 +14,10 @@ script:
 
   - docker ps
   - /sbin/ifconfig
+
+  # Wait until the port is open
   - bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$0/$1; do sleep 1; done' localhost 7011
+  # ... but also wait for logstash to get started. It's slow.
+  - sleep 60
 
   - make test
