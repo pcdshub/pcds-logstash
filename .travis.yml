@@ -16,6 +16,6 @@ script:
   - /sbin/ifconfig
 
   # ... but also wait for logstash to get started. It's slow.
-  - timeout 120 docker logs -f $(docker ps -q) || echo "\n\nOK, hopefully it's ready..."
+  - timeout 200 docker logs -f $(docker ps -q) || echo "\n\nOK, hopefully it's ready..."
 
   - make test
